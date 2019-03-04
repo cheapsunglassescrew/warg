@@ -1,0 +1,19 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "target": "es5",
+    "outFile": "build/compiled.js",
+    "typeRoots": [
+      "./@types"
+    ],
+    "lib": [
+      "es2015"
+    ],
+    "noImplicitReturns": true
+  },
+  "exclude": [
+    "./src/_Debug/Debug.ts",
+    "src/_Debug/DebugApi.ts",
+    "./**/*.js"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "tsc80",
+      "command": "tsc80",
+      "args": [
+        "run"
+      ],
+      "problemMatcher": [
+        "$tsc"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "type": "shell",
+      "presentation": {
+        "reveal": "silent"
+      }
+    },
+    {
+      "type": "typescript",
+      "tsconfig": "tsconfig.debug.json",
+      "option": "watch",
+      "problemMatcher": [
+        "$tsc-watch"
+      ]
+    }
+  ]
+}
