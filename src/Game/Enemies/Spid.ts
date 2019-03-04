@@ -1,4 +1,4 @@
-/// <reference path="./../../Framework/GameObject.ts" />
+/// <reference path="./../../rosetic/Framework/GameObject.ts" />
 
 namespace Enemies {
   export class Spid extends GameObject {

@@ -1,4 +1,4 @@
-/// <reference path="./../../Framework/GameObject.ts" />
+/// <reference path="./../../rosetic/Framework/GameObject.ts" />
 
 class Sword extends GameObject {
   private attackPhase: number = 0;

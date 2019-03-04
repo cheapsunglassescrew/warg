@@ -1,0 +1,3 @@
+[submodule "src/rosetic"]
+	path = src/rosetic
+	url = https://github.com/cheapsunglassescrew/rosetic.git

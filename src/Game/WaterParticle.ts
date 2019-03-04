@@ -1,4 +1,4 @@
-/// <reference path="./../Framework/GameObject.ts" />
+/// <reference path="./../rosetic/Framework/GameObject.ts" />
 
 class WaterParticle extends GameObject {
   liveCounter: number = 20;
