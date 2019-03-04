@@ -1,4 +1,4 @@
-/// <reference path="./../rosetic/Framework/GameObject.ts" />
+/// <reference path="./../rosetic/src/GameObject.ts" />
 
 class Player extends GameObject {  
 
@@ -16,9 +16,9 @@ class Player extends GameObject {
       this.game.hiScore = this.score;
     }
   }
-  onHit(hitter: IGameObject): void {
+  onCollision(collidingObject: IGameObject): void {
     if (this.hurtTimer == 0) {
-      this.velocity.x = hitter.velocity.x > 0 ? this.hurtJumpVector.x : -this.hurtJumpVector.x;
+      this.velocity.x = collidingObject.velocity.x > 0 ? this.hurtJumpVector.x : -this.hurtJumpVector.x;
       this.velocity.y = this.hurtJumpVector.y;
       this.components.actor.hitPoints -= 1;
       this.hurtTimer = this.hurtTimerValue;
@@ -32,12 +32,12 @@ class Player extends GameObject {
     const collidingObject = this.components.actor.getFirstObjectCollision(GameObjectTags.Enemy);
     if (collidingObject != null) {
       if (this.states[Moves.Dash.stateKey]) {
-        collidingObject.onHit(this);
+        collidingObject.onCollision(this);
         if (collidingObject.components.actor.isDead()) {
           this.score += collidingObject.components.actor.scoreValue;
         }
       } else {
-        this.onHit(collidingObject);
+        this.onCollision(collidingObject);
       }
     }
     if (this.velocity.x <= this.defaultVelocity.x && this.velocity.x >= -this.defaultVelocity.x) {

@@ -1,4 +1,4 @@
-/// <reference path="./../../rosetic/Framework/GameObject.ts" />
+/// <reference path="./../../rosetic/src/GameObject.ts" />
 
 class Sword extends GameObject {
   private attackPhase: number = 0;
@@ -41,7 +41,7 @@ class Sword extends GameObject {
       if (collidingObject != null) {
         if (this.hitByThisSwing.indexOf(collidingObject) < 0) {
           this.hitByThisSwing.push(collidingObject);
-          collidingObject.onHit(this);
+          collidingObject.onCollision(this);
           if (collidingObject.components.actor.isDead()) {
             this.parent.score += collidingObject.components.actor.scoreValue;
           }

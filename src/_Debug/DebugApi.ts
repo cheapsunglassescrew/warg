@@ -1,4 +1,4 @@
-/// <reference path="../rosetic/Framework/IApi.ts" />
+/// <reference path="../rosetic/src/IApi.ts" />
 class DebugApi implements IApi {
   map(x?: number, y?: number, w?: number, h?: number, sx?: number, sy?: number, colorkey?: number, scale?: number, remap?: (tile: number) => void): void {
     

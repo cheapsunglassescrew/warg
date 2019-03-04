@@ -1,4 +1,4 @@
-/// <reference path="./../../rosetic/Framework/GameObject.ts" />
+/// <reference path="./../../rosetic/src/GameObject.ts" />
 
 namespace Enemies {
   export class Spid extends GameObject {
@@ -100,12 +100,12 @@ namespace Enemies {
 
     }
 
-    onHit(hitter: IGameObject): void {
+    onCollision(collidingObject: IGameObject): void {
       this.components.actor.hitPoints -= 1;
       this.freezeCounter = this.defaultFreezeCounter;
       if (this.components.actor.isDead()) {
-        this.killerVelocity = hitter.velocity.copy();
-        this.killerPosition = hitter.position.copy();
+        this.killerVelocity = collidingObject.velocity.copy();
+        this.killerPosition = collidingObject.position.copy();
       }
     }
     onDestroy() {
