@@ -9,7 +9,7 @@ class Sword extends GameObject {
     super(parent, id, ComponentFlags.Visible | ComponentFlags.Actor);
     this.tags |= GameObjectTags.Weapon;
   }
-  onUpdate(): void {
+  onUpdate(tic: number): void {
     let directionOffset = 0;
     if (this.parent.direction.x < 0) {
       directionOffset = this.parent.dimensions.x - this.dimensions.x;

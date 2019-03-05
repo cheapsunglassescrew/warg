@@ -12,7 +12,7 @@ namespace Moves {
       return dash;
     }
 
-    onUpdate(): void {
+    onUpdate(tic: number): void {
       if (this.game.api.btnp(Button.B)) {
         if (Math.abs(this.parent.velocity.x) <= this.parent.defaultVelocity.x) {
           this.parent.velocity.x = 4 * this.parent.direction.x;

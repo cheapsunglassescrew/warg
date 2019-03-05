@@ -5,19 +5,6 @@
 		}
 	],
 	"settings": {
-		"code-runner.cwd": "C:\\Users\\tbory.SURFER.000\\Downloads\\tic80",
-		// Set the executor of each language.
-		"code-runner.executorMap": {
-			"javascript":   "tic80 C:\\Users\\tbory.SURFER.000\\AppData\\Roaming\\com.nesbox.tic\\TIC-80\\$fileNameWithoutExt.tic -code-watch $fullFileName",
-			"lua":          "tic80 C:\\Users\\tbory.SURFER.000\\AppData\\Roaming\\com.nesbox.tic\\TIC-80\\$fileNameWithoutExt.tic -code-watch $fullFileName",      
-			"moonscript":   "tic80 C:\\Users\\tbory.SURFER.000\\AppData\\Roaming\\com.nesbox.tic\\TIC-80\\$fileNameWithoutExt.tic -code-watch $fullFileName"      
-		},
-		// Whether to save the current file before running.
-		"code-runner.saveFileBeforeRun": true,
-		// Whether to clear previous output before each run.
-		"code-runner.clearPreviousOutput": true,
-		// Whether to ignore selection to always run entire file.
-		"code-runner.ignoreSelection": true,
 		// The number of spaces a tab is equal to. This setting is overriden based on the file contents when `editor.detectIndentation` is on.
 		"editor.tabSize": 2,
 		"files.autoSave": "onFocusChange"

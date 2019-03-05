@@ -24,7 +24,7 @@ class Player extends GameObject {
       this.hurtTimer = this.hurtTimerValue;
     }
   }
-  onUpdate(): void {
+  onUpdate(tic: number): void {
     this.velocity.y = this.velocity.y + this.game.gravity;
     if (this.hurtTimer > 0) {
       this.hurtTimer -= 1;
@@ -64,12 +64,12 @@ class Player extends GameObject {
     this.components.visible.color = 13;
     if (this.hurtTimer > 0) {
       this.components.visible.color = 15;
-      if (__tic % 4 == 1) {
+      if (tic % 4 == 1) {
         this.components.visible.hide = !this.components.visible.hide;
       }
     } else if (this.states[Moves.Dash.stateKey]) {
       this.components.visible.color = 14;
-      if (__tic % 4 == 1) {
+      if (tic % 4 == 1) {
         this.components.visible.hide = !this.components.visible.hide;
       }
     }

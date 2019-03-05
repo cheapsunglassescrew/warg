@@ -25,7 +25,7 @@ namespace Enemies {
       this.tags |= GameObjectTags.Enemy;
 
     }
-    onUpdate(): void {
+    onUpdate(tic: number): void {
       
       if (this.freezeCounter > 0) {
         this.freezeCounter--;

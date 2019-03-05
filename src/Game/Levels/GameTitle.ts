@@ -1,4 +1,6 @@
 /// <reference path="./../../rosetic/src/Level.ts" />
+/// <reference path="./../../rosetic/src/Tools.ts" />
+/// <reference path="./../../rosetic/src/Button.ts" />
 
 class GameTitle extends Level {
   update(tic: number): void {
