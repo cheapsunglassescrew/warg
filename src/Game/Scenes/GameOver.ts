@@ -1,4 +1,4 @@
-/// <reference path="./../../rosetic/src/Level.ts" />
+/// <reference path="../../rosetic/src/Scene.ts" />
 
 class GameOver extends Scene {
   update(tic: number): void {

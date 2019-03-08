@@ -1,4 +1,4 @@
-/// <reference path="./../../rosetic/src/Level.ts" />
+/// <reference path="../../rosetic/src/Scene.ts" />
 
 class GameStart extends Scene {
   update(tic: number): void {

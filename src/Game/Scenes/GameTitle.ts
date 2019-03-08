@@ -1,4 +1,4 @@
-/// <reference path="./../../rosetic/src/Level.ts" />
+/// <reference path="../../rosetic/src/Scene.ts" />
 /// <reference path="./../../rosetic/src/Tools.ts" />
 /// <reference path="./../../rosetic/src/Button.ts" />
 
