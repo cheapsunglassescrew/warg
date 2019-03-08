@@ -1,6 +1,6 @@
 /// <reference path="./../../rosetic/src/Level.ts" />
 
-class GameOver extends Level {
+class GameOver extends Scene {
   update(tic: number): void {
     Tools.printCentered(this.game.api, "GAME OVER", undefined, undefined, 13);
     Tools.printCentered(this.game.api, "Press X button/A key", undefined, 230, 13); 

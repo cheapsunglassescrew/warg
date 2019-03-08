@@ -1,6 +1,6 @@
 /// <reference path="./../../rosetic/src/Level.ts" />
 
-class GameStart extends Level {
+class GameStart extends Scene {
   update(tic: number): void {
     this.game.api.cls();
     Tools.printCentered(this.game.api, "WARG", undefined, 40, 10, false, 3); 

@@ -1,6 +1,6 @@
 /// <reference path="./../../rosetic/src/Level.ts" />
 
-abstract class GamePlay extends Level {
+abstract class GamePlay extends Scene {
   update(tic: number): void {
     this.game.root.update(tic);
     this.game.api.cls();

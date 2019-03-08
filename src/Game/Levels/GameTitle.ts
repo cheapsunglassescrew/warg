@@ -2,7 +2,7 @@
 /// <reference path="./../../rosetic/src/Tools.ts" />
 /// <reference path="./../../rosetic/src/Button.ts" />
 
-class GameTitle extends Level {
+class GameTitle extends Scene {
   update(tic: number): void {
     this.game.api.cls();
     this.game.api.print("WARG", 5, 10, 10, false, 10); 
