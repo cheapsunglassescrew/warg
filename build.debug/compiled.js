@@ -287,15 +287,15 @@ var BaseGame = /** @class */ (function () {
         this.root = new RootGameObject(this, "_root", ComponentFlags.Visible);
         //this.performanceMonitor = new PerformanceMonitor(this);
     }
-    BaseGame.prototype.setCurrentLevel = function (level) {
-        level.init();
-        this.currentLevel = level;
+    BaseGame.prototype.setCurrentScene = function (scene) {
+        scene.init();
+        this.currentScene = scene;
     };
     BaseGame.prototype.init = function () { };
     BaseGame.prototype.update = function (tic) {
         this.tic = tic;
         //this.performanceMonitor.frameStartTime = this.api.time();
-        this.currentLevel.update(tic);
+        this.currentScene.update(tic);
         //this.performanceMonitor.frameEndTime = this.api.time();
         //this.performanceMonitor.draw();
     };
@@ -321,7 +321,7 @@ var Game = /** @class */ (function (_super) {
         return _this;
     }
     Game.prototype.init = function () {
-        this.setCurrentLevel(new GameTitle(this));
+        this.setCurrentScene(new GameTitle(this));
     };
     return Game;
 }(BaseGame));
@@ -337,7 +337,7 @@ var Player = /** @class */ (function (_super) {
         return _this;
     }
     Player.prototype.onDestroy = function () {
-        this.game.setCurrentLevel(new GameOver(this.game));
+        this.game.setCurrentScene(new GameOver(this.game));
         if (this.game.hiScore < this.score) {
             this.game.hiScore = this.score;
         }
@@ -630,15 +630,44 @@ var Enemies;
     }(GameObject));
     Enemies.Spid = Spid;
 })(Enemies || (Enemies = {}));
-var Level = /** @class */ (function () {
-    function Level(game) {
+var Moves;
+(function (Moves) {
+    var Dash = /** @class */ (function (_super) {
+        __extends(Dash, _super);
+        function Dash(parent, id) {
+            var _this = _super.call(this, parent, id, ComponentFlags.None) || this;
+            _this.tags |= GameObjectTags.Move;
+            return _this;
+        }
+        Dash.create = function (parent) {
+            var dash = new Dash(parent, "dash" + Tools.unique());
+            return dash;
+        };
+        Dash.prototype.onUpdate = function (tic) {
+            if (this.game.api.btnp(Button.B)) {
+                if (Math.abs(this.parent.velocity.x) <= this.parent.defaultVelocity.x) {
+                    this.parent.velocity.x = 4 * this.parent.direction.x;
+                    this.parent.states[Dash.stateKey] = true;
+                }
+            }
+            if (this.parent.states[Dash.stateKey] && this.parent.velocity.x <= this.parent.defaultVelocity.x && this.parent.velocity.x >= -this.parent.defaultVelocity.x) {
+                this.parent.states[Dash.stateKey] = false;
+            }
+        };
+        Dash.stateKey = "dash";
+        return Dash;
+    }(GameObject));
+    Moves.Dash = Dash;
+})(Moves || (Moves = {}));
+var Scene = /** @class */ (function () {
+    function Scene(game) {
         this.game = game;
     }
-    Level.prototype.init = function () { };
-    Level.prototype.update = function (tic) { };
-    return Level;
+    Scene.prototype.init = function () { };
+    Scene.prototype.update = function (tic) { };
+    return Scene;
 }());
-/// <reference path="./../../rosetic/src/Level.ts" />
+/// <reference path="../../rosetic/src/Scene.ts" />
 var GameOver = /** @class */ (function (_super) {
     __extends(GameOver, _super);
     function GameOver() {
@@ -648,12 +677,12 @@ var GameOver = /** @class */ (function (_super) {
         Tools.printCentered(this.game.api, "GAME OVER", undefined, undefined, 13);
         Tools.printCentered(this.game.api, "Press X button/A key", undefined, 230, 13);
         if (this.game.api.btnp(Button.X)) {
-            this.game.setCurrentLevel(new GameStart(this.game));
+            this.game.setCurrentScene(new GameStart(this.game));
         }
     };
     return GameOver;
-}(Level));
-/// <reference path="./../../rosetic/src/Level.ts" />
+}(Scene));
+/// <reference path="../../rosetic/src/Scene.ts" />
 var GamePlay = /** @class */ (function (_super) {
     __extends(GamePlay, _super);
     function GamePlay() {
@@ -677,8 +706,8 @@ var GamePlay = /** @class */ (function (_super) {
         Tools.printCentered(this.game.api, "HI-SCORE: " + this.game.hiScore.toString(), undefined, 0, 13);
     };
     return GamePlay;
-}(Level));
-/// <reference path="./../../rosetic/src/Level.ts" />
+}(Scene));
+/// <reference path="../../rosetic/src/Scene.ts" />
 var GameStart = /** @class */ (function (_super) {
     __extends(GameStart, _super);
     function GameStart() {
@@ -693,11 +722,11 @@ var GameStart = /** @class */ (function (_super) {
         Tools.printCentered(this.game.api, "D Pad/Arrows : Movement", undefined, 170, 13);
         Tools.printCentered(this.game.api, "Press X button/A key", undefined, 230, 13);
         if (this.game.api.btnp(Button.X)) {
-            this.game.setCurrentLevel(new Sewers(this.game));
+            this.game.setCurrentScene(new Sewers(this.game));
         }
     };
     return GameStart;
-}(Level));
+}(Scene));
 var Tools;
 (function (Tools) {
     function getRandomFloat(min, max) {
@@ -752,7 +781,7 @@ var Button;
     Button[Button["X"] = 6] = "X";
     Button[Button["Y"] = 7] = "Y"; //S
 })(Button || (Button = {}));
-/// <reference path="./../../rosetic/src/Level.ts" />
+/// <reference path="../../rosetic/src/Scene.ts" />
 /// <reference path="./../../rosetic/src/Tools.ts" />
 /// <reference path="./../../rosetic/src/Button.ts" />
 var GameTitle = /** @class */ (function (_super) {
@@ -766,11 +795,11 @@ var GameTitle = /** @class */ (function (_super) {
         Tools.printCentered(this.game.api, "by Cheap Sunglasses Crew", undefined, 150, 13, false, 1.5);
         Tools.printCentered(this.game.api, "Press X button/A key", undefined, 230, 13);
         if (this.game.api.btnp(Button.X)) {
-            this.game.setCurrentLevel(new GameStart(this.game));
+            this.game.setCurrentScene(new GameStart(this.game));
         }
     };
     return GameTitle;
-}(Level));
+}(Scene));
 var Sewers = /** @class */ (function (_super) {
     __extends(Sewers, _super);
     function Sewers() {
@@ -883,35 +912,6 @@ var Sewers = /** @class */ (function (_super) {
     };
     return Sewers;
 }(GamePlay));
-var Moves;
-(function (Moves) {
-    var Dash = /** @class */ (function (_super) {
-        __extends(Dash, _super);
-        function Dash(parent, id) {
-            var _this = _super.call(this, parent, id, ComponentFlags.None) || this;
-            _this.tags |= GameObjectTags.Move;
-            return _this;
-        }
-        Dash.create = function (parent) {
-            var dash = new Dash(parent, "dash" + Tools.unique());
-            return dash;
-        };
-        Dash.prototype.onUpdate = function (tic) {
-            if (this.game.api.btnp(Button.B)) {
-                if (Math.abs(this.parent.velocity.x) <= this.parent.defaultVelocity.x) {
-                    this.parent.velocity.x = 4 * this.parent.direction.x;
-                    this.parent.states[Dash.stateKey] = true;
-                }
-            }
-            if (this.parent.states[Dash.stateKey] && this.parent.velocity.x <= this.parent.defaultVelocity.x && this.parent.velocity.x >= -this.parent.defaultVelocity.x) {
-                this.parent.states[Dash.stateKey] = false;
-            }
-        };
-        Dash.stateKey = "dash";
-        return Dash;
-    }(GameObject));
-    Moves.Dash = Dash;
-})(Moves || (Moves = {}));
 /// <reference path="./../../rosetic/src/GameObject.ts" />
 var Sword = /** @class */ (function (_super) {
     __extends(Sword, _super);

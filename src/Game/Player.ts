@@ -11,7 +11,7 @@ class Player extends GameObject {
     this.tags |= GameObjectTags.Player;
   }
   onDestroy() {
-    this.game.setCurrentLevel(new GameOver(this.game));
+    this.game.setCurrentScene(new GameOver(this.game));
     if (this.game.hiScore < this.score) {
       this.game.hiScore = this.score;
     }

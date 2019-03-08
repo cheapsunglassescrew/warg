@@ -9,7 +9,7 @@ class GameTitle extends Scene {
     Tools.printCentered(this.game.api, "by Cheap Sunglasses Crew", undefined, 150, 13, false, 1.5); 
     Tools.printCentered(this.game.api, "Press X button/A key", undefined, 230, 13); 
     if (this.game.api.btnp(Button.X)) {
-      this.game.setCurrentLevel(new GameStart(this.game));
+      this.game.setCurrentScene(new GameStart(this.game));
     }
   }
 }

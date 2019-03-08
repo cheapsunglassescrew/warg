@@ -10,7 +10,7 @@ class GameStart extends Scene {
     Tools.printCentered(this.game.api, "D Pad/Arrows : Movement", undefined, 170, 13); 
     Tools.printCentered(this.game.api, "Press X button/A key", undefined, 230, 13); 
     if (this.game.api.btnp(Button.X)) {
-      this.game.setCurrentLevel(new Sewers(this.game));
+      this.game.setCurrentScene(new Sewers(this.game));
     }
   }
 }

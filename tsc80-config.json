@@ -8,8 +8,8 @@
     "backup": true
   },
   "tic": {
-    "ticExecutable": "../../../../Downloads/tic80/tic80.exe",
-    "cartsDirectory": "../../../../AppData/Roaming/com.nesbox.tic/TIC-80/"
+    "ticExecutable": "../../../Downloads/tic80/tic80.exe",
+    "cartsDirectory": "../../../AppData/Roaming/com.nesbox.tic/TIC-80/"
   },
   "compression": {
     "compressedFile": "build/compiled.js",
